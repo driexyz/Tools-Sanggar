@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StudentInfo } from '../../types/suratIzin';
 import { Download, X, CheckSquare, Square, FileText } from 'lucide-react';
 
@@ -15,33 +15,41 @@ export const BulkDownloadModal: React.FC<BulkDownloadModalProps> = ({
   onClose,
   onConfirmDownload,
 }) => {
-  const [selectedIds, setSelectedIds] = useState<string[]>(() => 
-    students.map(s => s.id)
-  );
+  // Helper to ensure every student has a unique identifier even if s.id is missing or duplicate
+  const getStudentKey = (student: StudentInfo, idx: number) => student.id || `student-key-${idx}`;
+
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+
+  // Synchronize state every time modal opens or students list updates
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedKeys(students.map((s, idx) => getStudentKey(s, idx)));
+    }
+  }, [isOpen, students]);
 
   if (!isOpen) return null;
 
-  const isAllSelected = selectedIds.length === students.length;
+  const isAllSelected = selectedKeys.length === students.length && students.length > 0;
 
   const handleToggleSelectAll = () => {
     if (isAllSelected) {
-      setSelectedIds([]);
+      setSelectedKeys([]);
     } else {
-      setSelectedIds(students.map(s => s.id));
+      setSelectedKeys(students.map((s, idx) => getStudentKey(s, idx)));
     }
   };
 
-  const handleToggleStudent = (id: string) => {
-    if (selectedIds.includes(id)) {
-      setSelectedIds(selectedIds.filter(item => item !== id));
+  const handleToggleStudent = (key: string) => {
+    if (selectedKeys.includes(key)) {
+      setSelectedKeys(selectedKeys.filter(item => item !== key));
     } else {
-      setSelectedIds([...selectedIds, id]);
+      setSelectedKeys([...selectedKeys, key]);
     }
   };
 
   const handleDownload = () => {
     const selectedIndexes = students
-      .map((student, idx) => (selectedIds.includes(student.id) ? idx : -1))
+      .map((student, idx) => (selectedKeys.includes(getStudentKey(student, idx)) ? idx : -1))
       .filter(idx => idx !== -1);
 
     if (selectedIndexes.length === 0) {
@@ -79,7 +87,7 @@ export const BulkDownloadModal: React.FC<BulkDownloadModalProps> = ({
         {/* Select All / Deselect Toolbar */}
         <div className="px-5 py-2.5 bg-slate-950/50 border-b border-slate-800 flex items-center justify-between text-xs text-slate-300">
           <span className="font-medium text-slate-400">
-            Terpilih: <span className="font-bold text-emerald-400">{selectedIds.length}</span> dari {students.length} Siswa
+            Terpilih: <span className="font-bold text-emerald-400">{selectedKeys.length}</span> dari {students.length} Siswa
           </span>
 
           <button
@@ -94,11 +102,12 @@ export const BulkDownloadModal: React.FC<BulkDownloadModalProps> = ({
         {/* Scrollable Student List */}
         <div className="p-4 overflow-y-auto flex-1 space-y-2 max-h-[350px]">
           {students.map((student, idx) => {
-            const isChecked = selectedIds.includes(student.id);
+            const key = getStudentKey(student, idx);
+            const isChecked = selectedKeys.includes(key);
             return (
               <div
-                key={student.id || idx}
-                onClick={() => handleToggleStudent(student.id)}
+                key={key}
+                onClick={() => handleToggleStudent(key)}
                 className={`flex items-center justify-between p-3 rounded-xl border transition-all cursor-pointer ${
                   isChecked
                     ? 'bg-forest/20 border-forest text-white'
@@ -140,11 +149,11 @@ export const BulkDownloadModal: React.FC<BulkDownloadModalProps> = ({
           <button
             type="button"
             onClick={handleDownload}
-            disabled={selectedIds.length === 0}
+            disabled={selectedKeys.length === 0}
             className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold text-slate-950 bg-sandstone hover:bg-sandstone/90 disabled:opacity-40 disabled:hover:bg-sandstone transition-all shadow-md active:scale-95"
           >
             <Download className="w-4 h-4 text-slate-950" />
-            Unduh {selectedIds.length} PDF Surat Izin
+            Unduh {selectedKeys.length} PDF Surat Izin
           </button>
         </div>
 
