@@ -166,18 +166,19 @@ export const SuratIzinTemplate: React.FC<SuratIzinTemplateProps> = ({ surat }) =
             </p>
 
             {/* Stamp & Signature Image Container */}
-            <div className="relative h-20 w-full flex items-center justify-center my-1">
+            <div className="relative h-16 w-full flex items-center justify-center my-1">
               {surat.showStampAndSignature && (
                 <img 
                   src={getAssetUrl("assets/logo/stamp-signature.png")} 
                   alt="Cap Sanggar & Tanda Tangan Sri Supeni" 
-                  className="h-24 w-auto object-contain absolute z-10 pointer-events-none"
+                  className="max-h-16 w-auto object-contain z-10 pointer-events-none"
+                  style={{ maxHeight: '60px' }}
                 />
               )}
             </div>
 
             <div className="relative z-20">
-              <p className="font-bold text-sm sm:text-base text-slate-900 border-b border-slate-800 pb-0.5 inline-block min-w-[170px]">
+              <p className="font-bold text-xs sm:text-sm text-slate-900 border-b border-slate-800 pb-0.5 inline-block min-w-[150px]">
                 ({surat.signerName || sender.founder || "Sri Supeni"})
               </p>
             </div>

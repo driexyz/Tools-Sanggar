@@ -323,28 +323,29 @@ export const SanggarBundakuKopSurat: React.FC<TemplateProps> = ({ invoice }) => 
               <p className="leading-snug text-slate-600">{invoice.paymentTerms || "Bukti transfer mohon dikirimkan kepada pengurus Sanggar Bundaku."}</p>
             </div>
 
-            {/* Signature Block - Larger and pushed lower to balance the bottom space */}
-            <div className="text-center relative min-w-[200px] pt-3 pb-1">
-              <p className="text-xs text-slate-600 mb-0.5">
+            {/* Signature Block - Balanced & Proportionate */}
+            <div className="text-center relative min-w-[200px] pt-2 pb-1">
+              <p className="text-[11px] text-slate-600 mb-0.5">
                 Sleman, {formatDateIndonesian(invoice.issueDate)}
               </p>
-              <p className="font-bold text-xs sm:text-sm text-forest uppercase tracking-wider">
+              <p className="font-bold text-xs text-forest uppercase tracking-wider">
                 {invoice.signerRole || "Pimpinan Sanggar Bundaku"}
               </p>
 
               {/* Stamp & Signature Image Container */}
-              <div className="relative h-20 w-full flex items-center justify-center my-1.5">
+              <div className="relative h-16 w-full flex items-center justify-center my-1">
                 {invoice.showStampPlaceholder && (
                   <img 
                     src={getAssetUrl("assets/logo/stamp-signature.png")} 
                     alt="Cap Sanggar & Tanda Tangan Sri Supeni" 
-                    className="h-26 w-auto object-contain absolute z-10 pointer-events-none"
+                    className="max-h-16 w-auto object-contain z-10 pointer-events-none"
+                    style={{ maxHeight: '60px' }}
                   />
                 )}
               </div>
 
               <div className="relative z-20">
-                <p className="font-bold text-sm sm:text-base text-slate-900 border-b border-slate-800 pb-0.5 inline-block min-w-[160px]">
+                <p className="font-bold text-xs sm:text-sm text-slate-900 border-b border-slate-800 pb-0.5 inline-block min-w-[150px]">
                   {invoice.signerName || sender.founder || "Sri Supeni"}
                 </p>
               </div>
