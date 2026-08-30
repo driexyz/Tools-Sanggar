@@ -49,7 +49,7 @@ export const SanggarBundakuKopSurat: React.FC<TemplateProps> = ({ invoice }) => 
   };
 
   return (
-    <div className="relative w-full h-[295mm] max-h-[295mm] bg-white text-slate-900 font-sora flex flex-col justify-between px-8 py-5 sm:px-10 sm:py-6 text-xs select-none box-border overflow-hidden">
+    <div className="relative w-full min-h-[295mm] h-auto bg-white text-slate-900 font-sora flex flex-col justify-between px-8 py-5 sm:px-10 sm:py-6 text-xs select-none box-border">
       
       {/* Background Watermark - Large Sandstone Dancer Mark */}
       {(invoice.showWatermark ?? true) && (

@@ -72,27 +72,45 @@ table,
   break-inside: avoid !important;
 }
 
-/* Print CSS to enforce standard A4 printing */
+/* Print CSS to enforce standard A4 printing without clipping or layout split bugs */
 @media print {
-  body {
+  html, body, #root, main, section {
     background: white !important;
     color: black !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
   }
+
   .no-print {
     display: none !important;
   }
+
   .print-only {
     display: block !important;
   }
+
   .a4-page-container {
     box-shadow: none !important;
     margin: 0 !important;
     width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
     height: auto !important;
     padding: 0 !important;
+    transform: none !important;
+    overflow: visible !important;
   }
+
   @page {
     size: A4 portrait;
-    margin: 8mm;
+    margin: 10mm;
   }
 }

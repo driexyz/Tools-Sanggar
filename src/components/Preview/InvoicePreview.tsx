@@ -150,7 +150,7 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
       <div className="w-full flex justify-center overflow-x-auto pb-12">
         <div 
           id="invoice-preview-container"
-          className="a4-page-container w-[210mm] min-h-[297mm] bg-white shadow-2xl rounded-sm transition-transform origin-top overflow-hidden"
+          className="a4-page-container w-[210mm] min-h-[297mm] bg-white shadow-2xl rounded-sm transition-transform origin-top"
           style={{
             transform: `scale(${scale})`,
             transformOrigin: 'top center',

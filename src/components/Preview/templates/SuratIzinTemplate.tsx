@@ -17,7 +17,7 @@ export const SuratIzinTemplate: React.FC<SuratIzinTemplateProps> = ({ surat }) =
     : { name: "", school: "", gradeClass: "" };
 
   return (
-    <div className="relative w-full h-[297mm] max-h-[297mm] bg-white text-slate-900 font-sora flex flex-col justify-between px-8 py-6 sm:px-12 sm:py-7 text-xs sm:text-sm select-none box-border overflow-hidden">
+    <div className="relative w-full min-h-[297mm] h-auto bg-white text-slate-900 font-sora flex flex-col justify-between px-8 py-6 sm:px-12 sm:py-7 text-xs sm:text-sm select-none box-border">
       
       {/* Background Watermark - Large Sandstone Dancer Mark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.08] z-0 overflow-hidden">
