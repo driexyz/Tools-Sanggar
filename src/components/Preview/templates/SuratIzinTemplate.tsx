@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sparkles } from 'lucide-react';
 import { SuratIzinData } from '../../../types/suratIzin';
 import { formatDateIndonesian } from '../../../utils/formatters';
+import { getAssetUrl } from '../../../utils/assetHelper';
 
 interface SuratIzinTemplateProps {
   surat: SuratIzinData;
@@ -21,7 +22,7 @@ export const SuratIzinTemplate: React.FC<SuratIzinTemplateProps> = ({ surat }) =
       {/* Background Watermark - Large Sandstone Dancer Mark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.08] z-0 overflow-hidden">
         <img 
-          src="/assets/logo/watermark-dancer.png" 
+          src={getAssetUrl(sender.watermarkUrl || "assets/logo/watermark-dancer.png")} 
           alt="Watermark Sanggar Bundaku" 
           className="w-[460px] max-w-[85%] h-auto object-contain"
         />
@@ -38,7 +39,7 @@ export const SuratIzinTemplate: React.FC<SuratIzinTemplateProps> = ({ surat }) =
               <div className="w-16 h-16 sm:w-18 sm:h-18 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-slate-200 bg-forest p-1">
                 {!logoError ? (
                   <img 
-                    src="/assets/logo/logo-green-forest.png" 
+                    src={getAssetUrl(sender.logoUrl || "assets/logo/logo-green-forest.png")} 
                     alt="Logo Sanggar Bundaku" 
                     className="w-full h-full object-cover"
                     onError={() => setLogoError(true)}
@@ -168,7 +169,7 @@ export const SuratIzinTemplate: React.FC<SuratIzinTemplateProps> = ({ surat }) =
             <div className="relative h-20 w-full flex items-center justify-center my-1">
               {surat.showStampAndSignature && (
                 <img 
-                  src="/assets/logo/stamp-signature.png" 
+                  src={getAssetUrl("assets/logo/stamp-signature.png")} 
                   alt="Cap Sanggar & Tanda Tangan Sri Supeni" 
                   className="h-24 w-auto object-contain absolute z-10 pointer-events-none"
                 />

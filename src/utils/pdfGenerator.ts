@@ -26,6 +26,7 @@ export const exportToPDF = async (
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
+      allowTaint: true,
       logging: false,
       scrollX: 0,
       scrollY: 0,

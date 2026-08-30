@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { SAMPLE_INVOICES } from '../../utils/sampleData';
 import { SAMPLE_SURAT_IZIN_PRESETS } from '../../utils/sampleSuratIzin';
+import { getAssetUrl } from '../../utils/assetHelper';
 import { InvoiceData } from '../../types/invoice';
 import { SuratIzinData } from '../../types/suratIzin';
 
@@ -43,7 +44,7 @@ export const WelcomePortal: React.FC<WelcomePortalProps> = ({
             <div className="w-7 h-7 rounded-full bg-forest p-1 flex items-center justify-center border border-sandstone/40">
               {!logoError ? (
                 <img 
-                  src="/assets/logo/dancer-icon-sandstone.png" 
+                  src={getAssetUrl("assets/logo/dancer-icon-sandstone.png")} 
                   alt="Sanggar Bundaku" 
                   className="w-full h-full object-contain"
                   onError={() => setLogoError(true)}

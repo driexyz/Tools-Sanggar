@@ -1,4 +1,5 @@
 import { InvoiceData, BusinessInfo } from '../types/invoice';
+import { getAssetUrl } from './assetHelper';
 
 export const SANGGAR_BUNDAKU_INFO: BusinessInfo = {
   name: "SANGGAR BUNDAKU",
@@ -11,8 +12,8 @@ export const SANGGAR_BUNDAKU_INFO: BusinessInfo = {
   postalCode: "55581",
   phone: "0819-0411-6067",
   email: "sanggartari.bundaku@gmail.com",
-  logoUrl: "/assets/logo/logo-green-forest.png",
-  watermarkUrl: "/assets/logo/watermark-dancer.png"
+  logoUrl: getAssetUrl("assets/logo/logo-green-forest.png"),
+  watermarkUrl: getAssetUrl("assets/logo/watermark-dancer.png")
 };
 
 export const SAMPLE_INVOICES: Record<string, InvoiceData> = {

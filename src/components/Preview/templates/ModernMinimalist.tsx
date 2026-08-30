@@ -7,6 +7,7 @@ import {
   calculateLineTotal,
   terbilangIndonesian
 } from '../../../utils/formatters';
+import { getAssetUrl } from '../../../utils/assetHelper';
 
 interface TemplateProps {
   invoice: InvoiceData;
@@ -24,7 +25,7 @@ export const ModernMinimalist: React.FC<TemplateProps> = ({ invoice }) => {
         <div className="flex justify-between items-start border-b border-slate-200 pb-6">
           <div className="flex items-center space-x-3">
             <img 
-              src={sender.logoUrl || "/assets/logo/dancer-icon-sandstone.png"} 
+              src={getAssetUrl(sender.logoUrl || "assets/logo/dancer-icon-sandstone.png")} 
               alt="Logo" 
               className="w-12 h-12 object-contain"
             />

@@ -22,6 +22,8 @@ import { SAMPLE_SURAT_IZIN_PRESETS } from '../utils/sampleSuratIzin';
 import { InvoiceData } from '../types/invoice';
 import { SuratIzinData } from '../types/suratIzin';
 
+import { getAssetUrl } from '../utils/assetHelper';
+
 interface NavbarProps {
   docMode: 'invoice' | 'suratIzin';
   onSelectDocMode: (mode: 'invoice' | 'suratIzin') => void;
@@ -94,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <div className="w-9 h-9 rounded-lg bg-forest p-1 flex items-center justify-center shadow-inner border border-sandstone/30 flex-shrink-0 group-hover:scale-105 transition-transform">
                   {!logoError ? (
                     <img 
-                      src="/assets/logo/dancer-icon-sandstone.png" 
+                      src={getAssetUrl("assets/logo/dancer-icon-sandstone.png")} 
                       alt="Sanggar Bundaku" 
                       className="w-full h-full object-contain"
                       onError={() => setLogoError(true)}

@@ -12,6 +12,7 @@ import { BulkDownloadModal } from './components/Modal/BulkDownloadModal';
 import { exportToPDF, exportBulkSuratIzinPDF, triggerPrint } from './utils/pdfGenerator';
 
 import { KeyboardShortcutsModal } from './components/Modal/KeyboardShortcutsModal';
+import { getAssetUrl } from './utils/assetHelper';
 
 const INVOICE_STORAGE_KEY = 'sanggar_bundaku_invoice_draft';
 const SURAT_STORAGE_KEY = 'sanggar_bundaku_surat_izin_draft';
@@ -87,8 +88,8 @@ export const App: React.FC = () => {
       try {
         const parsed = JSON.parse(saved);
         if (parsed && parsed.sender) {
-          parsed.sender.logoUrl = "/assets/logo/logo-green-forest.png";
-          parsed.sender.watermarkUrl = "/assets/logo/watermark-dancer.png";
+          parsed.sender.logoUrl = getAssetUrl("assets/logo/logo-green-forest.png");
+          parsed.sender.watermarkUrl = getAssetUrl("assets/logo/watermark-dancer.png");
           parsed.showWatermark = true;
         }
         return parsed;
@@ -106,8 +107,8 @@ export const App: React.FC = () => {
       try {
         const parsed = JSON.parse(saved);
         if (parsed && parsed.sender) {
-          parsed.sender.logoUrl = "/assets/logo/logo-green-forest.png";
-          parsed.sender.watermarkUrl = "/assets/logo/watermark-dancer.png";
+          parsed.sender.logoUrl = getAssetUrl("assets/logo/logo-green-forest.png");
+          parsed.sender.watermarkUrl = getAssetUrl("assets/logo/watermark-dancer.png");
         }
         if (!parsed.students || parsed.students.length === 0) {
           parsed.students = SAMPLE_SURAT_IZIN.students;

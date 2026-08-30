@@ -1,5 +1,6 @@
 import { SuratIzinData } from '../types/suratIzin';
 import { SANGGAR_BUNDAKU_INFO } from './sampleData';
+import { getAssetUrl } from './assetHelper';
 
 export const SAMPLE_SURAT_IZIN: SuratIzinData = {
   id: "surat-1",
@@ -41,8 +42,8 @@ export const SAMPLE_SURAT_IZIN: SuratIzinData = {
   
   sender: { 
     ...SANGGAR_BUNDAKU_INFO,
-    logoUrl: "/assets/logo/logo-green-forest.png",
-    watermarkUrl: "/assets/logo/watermark-dancer.png"
+    logoUrl: getAssetUrl("assets/logo/logo-green-forest.png"),
+    watermarkUrl: getAssetUrl("assets/logo/watermark-dancer.png")
   },
   
   signerRole: "Ketua Sanggar Bundaku",

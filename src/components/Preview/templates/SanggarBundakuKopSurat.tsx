@@ -8,6 +8,7 @@ import {
   calculateLineTotal,
   terbilangIndonesian 
 } from '../../../utils/formatters';
+import { getAssetUrl } from '../../../utils/assetHelper';
 
 interface TemplateProps {
   invoice: InvoiceData;
@@ -54,7 +55,7 @@ export const SanggarBundakuKopSurat: React.FC<TemplateProps> = ({ invoice }) => 
       {(invoice.showWatermark ?? true) && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-15 z-0 overflow-hidden">
           <img 
-            src="/assets/logo/watermark-dancer.png" 
+            src={getAssetUrl(invoice.sender.watermarkUrl || "assets/logo/watermark-dancer.png")} 
             alt="Watermark Sanggar Bundaku" 
             className="w-[480px] max-w-[85%] h-auto object-contain select-none"
           />
@@ -73,7 +74,7 @@ export const SanggarBundakuKopSurat: React.FC<TemplateProps> = ({ invoice }) => 
                 <div className="w-16 h-16 sm:w-18 sm:h-18 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center shadow-sm border border-slate-200 bg-forest p-1">
                   {!logoError ? (
                     <img 
-                      src="/assets/logo/logo-green-forest.png" 
+                      src={getAssetUrl(invoice.sender.logoUrl || "assets/logo/logo-green-forest.png")} 
                       alt="Logo Sanggar Bundaku" 
                       className="w-full h-full object-cover"
                       onError={() => setLogoError(true)}
@@ -335,7 +336,7 @@ export const SanggarBundakuKopSurat: React.FC<TemplateProps> = ({ invoice }) => 
               <div className="relative h-20 w-full flex items-center justify-center my-1.5">
                 {invoice.showStampPlaceholder && (
                   <img 
-                    src="/assets/logo/stamp-signature.png" 
+                    src={getAssetUrl("assets/logo/stamp-signature.png")} 
                     alt="Cap Sanggar & Tanda Tangan Sri Supeni" 
                     className="h-26 w-auto object-contain absolute z-10 pointer-events-none"
                   />
