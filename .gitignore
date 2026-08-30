@@ -28,6 +28,8 @@ dist-ssr
 *.sw?
 
 # Temporary / Agent metadata
+PRODUCT.md
+DESIGN.md
 .impeccable/
 .gemini/
 *.tmp
